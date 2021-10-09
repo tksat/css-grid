@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>grid template</title>
+  <link rel="stylesheet" href="./css/grid-tempate.css">
+</head>
+<body>
+  <h2>gridに名前を付けて指定する</h2>
+  <p>
+    <h3>▼設定</h3>
+    grid-template:<br>
+    "h h h" 60px<br>
+    "s m m" auto<br>
+    "f f f" 100px<br>
+    / [col-start] 1fr [col-2] 1fr [col-3] 1fr [col-end];
+    }<br>
+    <br>
+    <h3>▼指定する</h3>
+    .header { grid-area: h; }<br>
+    .sidebar { grid-area: s; }<br>
+    .main { grid-area: m; }<br>
+    .footer { grid-area: f; }
+  </p>
+  <div class="wrapper">
+    <div class="header">header</div>
+    <div class="sidebar">sidebar</div>
+    <div class="main">main</div>
+    <div class="footer">footer</div>
+  </div>
+</body>
+</html>

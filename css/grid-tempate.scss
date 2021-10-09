@@ -1,0 +1,50 @@
+.header,
+.main,
+.sidebar,
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: orange;
+  border: 1px solid #000;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+// .wrapper {
+//   height: 100vh;
+//   display: grid;
+//   grid-template-columns: [col-start] 1fr, [col-2] 1fr [col-3] 1fr [col-end];
+//   grid-auto-rows: 60px auto 100px;
+//   grid-template-areas:
+//     "h h h"
+//     "s m m"
+//     "f f f";
+// }
+
+/* 上記をショートハンドで記述した場合 */
+
+.wrapper {
+  display: grid;
+  height: 100vh;
+  grid-template:
+    "h h h" 60px "s m m" auto "f f f" 100px / [col-start] 1fr
+    [col-2] 1fr [col-3] 1fr [col-end];
+}
+
+.header {
+  grid-area: h;
+}
+
+.sidebar {
+  grid-area: s;
+}
+
+.main {
+  grid-area: m;
+}
+
+.footer {
+  grid-area: f;
+}

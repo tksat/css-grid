@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/style.css">
+  <title>css-gridの学習</title>
+</head>
+<body>
+  <h1>CSS GLID</h1>
+
+  <h2>親要素の指定方法</h2>
+
+  <h3>gridなし</h3>
+  <div id="container">
+    <div class="item one">1</div>
+    <div class="item two">2</div>
+    <div class="item three">3</div>
+    <div class="item four">4</div>
+    <div class="item five">5</div>
+    <div class="item six">6</div>
+  </div>
+
+  <h3>gridを適用</h3>
+  <div id="container" class="grid1">
+    <div class="item one">1</div>
+    <div class="item two">2</div>
+    <div class="item three">3</div>
+    <div class="item four">4</div>
+    <div class="item five">5</div>
+    <div class="item six">6</div>
+  </div>
+
+  <h3>grid 横を設定</h3>
+  <p>#container { grid-template-columns: 200px 200px 200px }</p>
+  <div id="container" class="grid2">
+    <div class="item one">1</div>
+    <div class="item two">2</div>
+    <div class="item three">3</div>
+    <div class="item four">4</div>
+    <div class="item five">5</div>
+    <div class="item six">6</div>
+  </div>
+
+  <p>#container { grid-template-columns: 200px 200px auto }</p>
+  <div id="container" class="grid3">
+    <div class="item one">1</div>
+    <div class="item two">2</div>
+    <div class="item three">3</div>
+    <div class="item four">4</div>
+    <div class="item five">5</div>
+    <div class="item six">6</div>
+  </div>
+
+  <p>#container { grid-template-columns: 50% 25% 25% }</p>
+  <div id="container" class="grid4">
+    <div class="item one">1</div>
+    <div class="item two">2</div>
+    <div class="item three">3</div>
+    <div class="item four">4</div>
+    <div class="item five">5</div>
+    <div class="item six">6</div>
+  </div>
+
+  <h4>均等にしたい場合</h4>
+  <p>#container { grid-template-columns: repeat(3, ifr) }</p>
+  <div id="container" class="grid5">
+    <div class="item one">1</div>
+    <div class="item two">2</div>
+    <div class="item three">3</div>
+    <div class="item four">4</div>
+    <div class="item five">5</div>
+    <div class="item six">6</div>
+  </div>
+
+  <h4>指定のpx以下になったら均等を解除</h4>
+  <p>#container { grid-template-columns: 1fr 1fr minmax(300px, 1fr) }</p>
+  <div id="container" class="grid6">
+    <div class="item one">1</div>
+    <div class="item two">2</div>
+    <div class="item three">3</div>
+    <div class="item four">4</div>
+    <div class="item five">5</div>
+    <div class="item six">6</div>
+  </div>
+
+  <h4>指定のpxを維持したまま親の横幅に合わせて子要素が改行される</h4>
+  <p>#container { grid-template-columns: repeat(auto-fill, 200px) }</p>
+  <div id="container" class="grid7">
+    <div class="item one">1</div>
+    <div class="item two">2</div>
+    <div class="item three">3</div>
+    <div class="item four">4</div>
+    <div class="item five">5</div>
+    <div class="item six">6</div>
+  </div>
+
+  <h4>minmaxとauto-fillを組み合わせた複雑な指定</h4>
+  <p>#container { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr) }</p>
+  <div id="container" class="grid8">
+    <div class="item one">1</div>
+    <div class="item two">2</div>
+  </div>
+
+  <h4>横にスキマができることなく子要素が改行される</h4>
+  <p>#container { grid-template-columns: repeat(auto-fit, 200px) }</p>
+  <div id="container" class="grid9">
+    <div class="item one">1</div>
+    <div class="item two">2</div>
+    <div class="item three">3</div>
+    <div class="item four">4</div>
+    <div class="item five">5</div>
+    <div class="item six">6</div>
+  </div>
+
+  <h3>gridの空きについて</h3>
+  <h4>横・縦それぞれ指定する</h4>
+  <p>#container {<br>
+    grid-template-columns: repeat(3, 1fr);<br>
+    grid-column-gap: 20px;<br>
+    grid-row-gap: 60px;)<br>
+  }
+  </p>
+  <div id="container" class="grid-10">
+    <div class="item one">1</div>
+    <div class="item two">2</div>
+    <div class="item three">3</div>
+    <div class="item four">4</div>
+    <div class="item five">5</div>
+    <div class="item six">6</div>
+  </div>
+
+  <h4>横・縦それぞれ指定する　【ショートハンドで記述を簡単に】</h4>
+  <p>#container {<br>
+    grid-template-columns: repeat(3, 1fr);<br>
+    grid-gap: 60px 20px;<br>
+    }
+  </p>
+  <div id="container" class="grid-11">
+    <div class="item one">1</div>
+    <div class="item two">2</div>
+    <div class="item three">3</div>
+    <div class="item four">4</div>
+    <div class="item five">5</div>
+    <div class="item six">6</div>
+  </div>
+
+  <h4>縦横同じ空きの場合</h4>
+  <p>#container {<br>
+    grid-template-columns: repeat(3, 1fr);<br>
+    grid-gap: 20px;<br>
+    }
+  </p>
+  <div id="container" class="grid-12">
+    <div class="item one">1</div>
+    <div class="item two">2</div>
+    <div class="item three">3</div>
+    <div class="item four">4</div>
+    <div class="item five">5</div>
+    <div class="item six">6</div>
+  </div>
+
+  <h3>親要素全体をコンテナ内のどこに配置するか</h3>
+  <h4>コンテナ内垂直に配置 : align-content</h4>
+  <ul>
+    <li>align-content: start => デフォルト・上部に配置</li>
+    <li>align-content: center => 中央に配置【適用中】</li>
+    <li>align-content: end => 下部に配置</li>
+    <li>align-content: space-between => 上下均等に配置</li>
+    <li>align-content: space-around => 均等に割った上下中央に配置</li>
+    <li>align-content: space-evenly => 上下の空き含め均等に割った位置に配置</li>
+  </ul>
+  <div id="container" class="align-content">
+    <div class="item one">1</div>
+    <div class="item two">2</div>
+    <div class="item three">3</div>
+    <div class="item four">4</div>
+    <div class="item five">5</div>
+    <div class="item six">6</div>
+  </div>
+
+  <h4>コンテナ内水平に配置 : justify-content</h4>
+  <ul>
+    <li>justify-content: start => デフォルト・上部に配置</li>
+    <li>justify-content: center => 中央に配置</li>
+    <li>justify-content: end => 下部に配置</li>
+    <li>justify-content: space-between => 左右均等に配置</li>
+    <li>justify-content: space-around => 均等に割った左右中央に配置</li>
+    <li>justify-content: space-evenly => 左右の空き含め均等に割った位置に配置【適用中】</li>
+  </ul>
+  <div id="container" class="justify-content">
+    <div class="item one">1</div>
+    <div class="item two">2</div>
+    <div class="item three">3</div>
+    <div class="item four">4</div>
+    <div class="item five">5</div>
+    <div class="item six">6</div>
+  </div>
+
+  <h4>コンテナ位置、垂直・水平をまとめて記述 : place-content</h4>
+  <ul>
+    <li>place-content: 垂直の位置(align-content)　水平の位置(justify-content)</li>
+  </ul>
+  <div id="container" class="place-content">
+    <div class="item one">1</div>
+    <div class="item two">2</div>
+    <div class="item three">3</div>
+    <div class="item four">4</div>
+    <div class="item five">5</div>
+    <div class="item six">6</div>
+  </div>
+
+  <h3>各子要素をセル内で位置を指定する</h3>
+  <h4>セル内垂直に配置 : align-items</h4>
+  <ul>
+    <li>align-items: stretch => デフォルト・上下にfit</li>
+    <li>align-items: start => 上部に配置【適用中】</li>
+    <li>align-items: center => 中央に配置</li>
+    <li>align-items: end => 下部に配置</li>
+  </ul>
+  <div id="container" class="grid-align-item">
+    <div class="item one">1</div>
+    <div class="item two">2</div>
+    <div class="item three">3</div>
+    <div class="item four">4</div>
+    <div class="item five">5</div>
+    <div class="item six">6</div>
+  </div>
+
+
+  <h4>セル内水平に配置 : justify-items</h4>
+  <ul>
+    <li>justify-items: stretch => デフォルト・左右にfit</li>
+    <li>justify-items: start => 左に配置</li>
+    <li>justify-items: center => 中央に配置【適用中】</li>
+    <li>justify-items: end => 右に配置</li>
+  </ul>
+  <div id="container" class="justify-items">
+    <div class="item one">1</div>
+    <div class="item two">2</div>
+    <div class="item three">3</div>
+    <div class="item four">4</div>
+    <div class="item five">5</div>
+    <div class="item six">6</div>
+  </div>
+
+  <h4>セル垂直水平をまとめて記述 : place-items</h4>
+  <ul>
+    <li>place-items: 垂直 水平</li>
+    <li>place-items: end　center</li>
+    <li>justify-items: center => 中央に配置【適用中】</li>
+    <li>justify-items: end => 右に配置</li>
+  </ul>
+  <div id="container" class="place-items">
+    <div class="item one">1</div>
+    <div class="item two">2</div>
+    <div class="item three">3</div>
+    <div class="item four">4</div>
+    <div class="item five">5</div>
+    <div class="item six">6</div>
+  </div>
+</body>
+</html>
+
+  <h2>様々なショートハンドでの記述</h2>
+  <p>
+      grid-template-columns: repeat(3, 1fr);<br>
+      grid-auto-rows: 100px;<br>
+      grid-auto-flow: row;<br>
+      ▼<br>
+      grid: auto-flow 100px / repeat(3, 1fr);<br>
+      <br>
+      ========<br>
+      <br>
+      grid-template-rows: 50px 200px;<br>
+      grid-template-columns: repeat(3, 1fr);<br>
+      ▼<br>
+      grid: 50px 200px / repeat(3, 1fr);<br>
+  </p>
+  <div id="container" class="shorthand-01">
+    <div class="item one">1</div>
+    <div class="item two">2</div>
+    <div class="item three">3</div>
+    <div class="item four">4</div>
+    <div class="item five">5</div>
+    <div class="item six">6</div>
+  </div>
+  </body>
+
+  </html>
