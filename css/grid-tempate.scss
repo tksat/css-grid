@@ -1,50 +1,201 @@
-.header,
-.main,
-.sidebar,
-.footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background: orange;
-  border: 1px solid #000;
-  border-radius: 8px;
-  padding: 20px;
+/* color */
+$papre: #5843be;
+$yellow: #ffc632;
+$orange: #ffa067;
+$red: #fe7066;
+$dark: #202240;
+$gray: #9eaabe;
+$light-gray: #f9fafb;
+$light-blue-gray: #f1f3f6;
+$shadow-gray: 0px 0px 8px rgba($dark, 0.16);
+
+/* font */
+
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
+$font-default: 400;
+$font-bold: 700;
+
+/* radius */
+
+$radius8: 8px;
+
+/* base */
+
+html {
+  font-size: 62.5%;
 }
 
-// .wrapper {
-//   height: 100vh;
-//   display: grid;
-//   grid-template-columns: [col-start] 1fr, [col-2] 1fr [col-3] 1fr [col-end];
-//   grid-auto-rows: 60px auto 100px;
-//   grid-template-areas:
-//     "h h h"
-//     "s m m"
-//     "f f f";
-// }
+body {
+  font-family: "Raleway", sans-serif;
+  font-weight: $font-default;
+  color: $dark;
+  font-size: 1.6rem;
+  letter-spacing: 0.1rem;
+}
 
-/* 上記をショートハンドで記述した場合 */
-
-.wrapper {
+#container {
   display: grid;
-  height: 100vh;
-  grid-template:
-    "h h h" 60px "s m m" auto "f f f" 100px / [col-start] 1fr
-    [col-2] 1fr [col-3] 1fr [col-end];
+  grid: 100vh / 144px 1fr;
 }
 
-.header {
-  grid-area: h;
+.nav {
+  text-align: center;
+  background: $light-blue-gray;
+
+  .logo {
+    margin: 60px 0;
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    border-radius: 4px;
+    position: relative;
+    box-shadow: 4px 4px 4px rgba($papre, 0.04),
+      inset -4px -4px 4px rgba($papre, 0.08), inset 4px 4px 4px #ffffff;
+  }
+
+  .nav-item {
+    a {
+      display: block;
+      width: 64px;
+      height: 64px;
+      margin: 60px auto;
+      position: relative;
+    }
+
+    a.active {
+      box-shadow: inset -4px -4px 4px rgba(#ffffff, 0.5),
+        inset 4px 4px 8px rgba($papre, 0.16);
+      border-radius: 32px;
+    }
+  }
+
+  img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+  }
 }
 
-.sidebar {
-  grid-area: s;
+.main-title {
+  font-size: 5.6rem;
+  font-weight: $font-bold;
 }
 
-.main {
-  grid-area: m;
+.second-title {
+  font-size: 1.2rem;
+  padding-bottom: 24px;
 }
 
-.footer {
-  grid-area: f;
+.container {
+  .card-area {
+  }
+}
+
+.first-card-area {
+  .main-card {
+    background: $papre;
+    border-radius: $radius8;
+    padding: 24px;
+    position: relative;
+
+    .deadline {
+      font-size: 1.2rem;
+      color: rgba(#ffffff, 0.5);
+      padding-bottom: 24px;
+
+      span {
+        font-size: 1.4rem;
+        color: #fff;
+        font-weight: $font-bold;
+        padding-left: 8px;
+      }
+    }
+
+    .deadline-title {
+      font-size: 3.2rem;
+      font-weight: $font-bold;
+      color: #fff;
+      padding-bottom: 16px;
+    }
+
+    .second-title {
+      padding-bottom: 16px;
+      font-size: 1.4rem;
+      color: rgba(#ffffff, 0.5);
+    }
+
+    .link {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .users-list {
+      .users {
+        display: flex;
+
+        li {
+          display: inline-block;
+          background: $gray;
+          width: 28px;
+          height: 28px;
+          border-radius: 14px;
+          border: 1px solid #fff;
+          margin-left: -8px;
+        }
+
+        li:first-child {
+          margin-left: 0;
+        }
+
+        .users-num {
+          font-size: 1.2rem;
+          color: #fff;
+          background: $yellow;
+          align-items: center;
+          display: flex;
+          justify-content: space-evenly;
+        }
+      }
+    }
+  }
+
+  .second-card {
+    h4 {
+      font-size: 1.6rem;
+      padding-bottom: 8px;
+      font-weight: $font-bold;
+    }
+
+    p {
+      font-size: 1.4rem;
+    }
+  }
+
+  @mixin card($color) {
+    padding: 24px;
+    background: rgba($color, 0.1);
+    color: $color;
+    border-radius: $radius8;
+  }
+
+  .second-card.romework {
+    @include card($orange);
+  }
+
+  .second-card.reading {
+    @include card($papre);
+  }
+}
+
+/* ================
+
+second-card-area
+
+================ */
+
+.second-card-area {
 }
