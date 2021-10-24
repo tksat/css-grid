@@ -8,6 +8,7 @@ $gray: #9eaabe;
 $light-gray: #f9fafb;
 $light-blue-gray: #f1f3f6;
 $shadow-gray: 0px 0px 8px rgba($dark, 0.16);
+$shadow-orange: 0px 4px 4px rgba($orange, 0.16);
 
 /* font */
 
@@ -33,14 +34,100 @@ body {
   letter-spacing: 0.1rem;
 }
 
-#container {
-  display: grid;
-  grid: 100vh / 144px 1fr;
+@mixin card-button {
+  a {
+    padding: 24px;
+    border: 2px solid rgba($gray, 0.1);
+    border-radius: $radius8;
+    display: block;
+
+    .title {
+      font-size: 1.8rem;
+      color: $dark;
+      margin-bottom: 8px;
+      font-weight: $font-bold;
+    }
+
+    .text {
+      font-size: 1.4rem;
+      color: $gray;
+    }
+  }
+  @content;
 }
+
+@mixin button-icon-arrow($icon-url) {
+  &::before {
+    content: "";
+    display: block;
+    background: url($icon-url) no-repeat;
+    width: 8px;
+    height: 16px;
+    background-size: contain;
+    position: absolute;
+    top: 50%;
+    right: 24px;
+    transform: translateY(-50%);
+    @content;
+  }
+}
+
+.main-title {
+  font-size: 5.6rem;
+  font-weight: $font-bold;
+}
+
+.second-title {
+  font-size: 1.2rem;
+  padding-bottom: 24px;
+}
+
+.container {
+  &-wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 6fr 3fr;
+    grid-template-areas: "n m s";
+
+    .main {
+      padding: 80px 62px;
+      grid-area: m;
+      display: grid;
+      grid-template-rows: 1fr 5fr;
+    }
+
+    .card-area {
+      display: grid;
+      grid-template-rows: 2fr 2fr 1fr;
+      grid-row-gap: 40px;
+    }
+
+    .first-card-area {
+      display: grid;
+      grid-template-columns: 3fr 1fr 1fr;
+      grid-column-gap: 20px;
+    }
+
+    .second-card-area,
+    .therd-card-area {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 20px;
+    }
+  }
+}
+
+/* ================
+
+nav-area
+
+================ */
 
 .nav {
   text-align: center;
   background: $light-blue-gray;
+  grid-area: n;
 
   .logo {
     margin: 60px 0;
@@ -77,20 +164,11 @@ body {
   }
 }
 
-.main-title {
-  font-size: 5.6rem;
-  font-weight: $font-bold;
-}
+/* ================
 
-.second-title {
-  font-size: 1.2rem;
-  padding-bottom: 24px;
-}
+first-card-area
 
-.container {
-  .card-area {
-  }
-}
+================ */
 
 .first-card-area {
   .main-card {
@@ -198,4 +276,263 @@ second-card-area
 ================ */
 
 .second-card-area {
+  .first {
+    box-shadow: $shadow-gray;
+    border-radius: $radius8;
+    padding: 24px;
+  }
+
+  .title-area {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .title {
+    font-size: 1.8rem;
+    font-weight: $font-bold;
+    margin-bottom: 8px;
+  }
+
+  .text {
+    font-size: 1.4rem;
+    color: $gray;
+  }
+
+  .button {
+    background: $orange;
+    margin: 24px 0;
+    padding: 24px 32px;
+    border-radius: $radius8;
+    color: #fff;
+    position: relative;
+
+    .text {
+      color: rgba(#fff, 0.5);
+    }
+
+    @include button-icon-arrow("../img/angle-right-solid-white.svg");
+  }
+
+  .second {
+    padding: 24px;
+
+    .icon {
+      margin-bottom: 16px;
+      padding: 12px 8px;
+      box-shadow: $shadow-gray;
+      border-radius: $radius8;
+      line-height: 0;
+      display: inline-block;
+    }
+
+    .title {
+      font-size: 3.2rem;
+      margin-bottom: 64px;
+    }
+
+    .ver-area {
+      display: flex;
+      justify-content: space-between;
+
+      .ver {
+        width: 200px;
+        height: 8px;
+        border-radius: 4px;
+        background: #f5f7f9;
+        position: relative;
+
+        &::before {
+          content: "";
+          display: inline-block;
+          width: 60%;
+          height: 100%;
+          border-radius: 4px;
+          background: $orange;
+          position: absolute;
+          top: 0;
+          left: 0;
+          box-shadow: $shadow-orange;
+        }
+      }
+    }
+  }
+}
+
+/* ================
+
+therd-card-area
+
+================ */
+
+.therd-card-area {
+  .therd-card {
+    @include card-button;
+
+    a {
+      height: 100%;
+      position: relative;
+      @include button-icon-arrow("../img/angle-right-solid-gray.svg");
+      padding: 24px 24px 24px 80px;
+      box-sizing: border-box;
+
+      &:after {
+        content: "";
+        display: inline-block;
+        width: 44px;
+        height: 44px;
+        background: url("../img/pencil-alt-solid-color.svg") no-repeat center;
+        border-radius: 22px;
+        box-shadow: $shadow-gray;
+        position: absolute;
+        top: 50%;
+        left: 24px;
+        transform: translateY(-50%);
+      }
+    }
+  }
+
+  .dictionary {
+    a {
+      &:after {
+        background: url("../img/book-solid-color.svg") no-repeat center;
+      }
+    }
+  }
+}
+
+/* ================
+
+side
+
+================ */
+
+.side {
+  padding: 60px 76px 36px;
+  background: $light-gray;
+  grid-area: s;
+
+  .user-img {
+    width: 138px;
+    height: 138px;
+    background: $gray;
+    border-radius: 68px;
+    margin: 0 auto;
+    position: relative;
+
+    .num {
+      display: grid;
+      width: 32px;
+      height: 30px;
+      padding-bottom: 2px;
+      border-radius: 16px;
+      background: $orange;
+      color: $light-blue-gray;
+      font-size: 1.6rem;
+      text-align: center;
+      font-weight: $font-bold;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      place-items: center;
+    }
+  }
+
+  .name-area {
+    text-align: center;
+    margin: 24px 0 94px;
+
+    .name-title {
+      font-size: 3.2rem;
+      font-weight: $font-bold;
+      padding-bottom: 16px;
+    }
+    .name-text {
+      font-size: 1.6rem;
+      color: $gray;
+      font-weight: $font-bold;
+    }
+  }
+
+  .button {
+    position: relative;
+    @include card-button;
+    @include button-icon-arrow("../img/angle-right-solid-orange.svg") {
+      width: 8px;
+      height: 8px;
+      padding: 16px;
+      background-position: center;
+      background-size: 6px 16px;
+      border-radius: 4px;
+      box-shadow: 2px 2px 4px rgba($gray, 0.2);
+    }
+    padding-bottom: 64px;
+    &:before {
+      transform: translateY(calc(-50% - 32px));
+    }
+  }
+
+  @mixin courses-progress-button($color) {
+    a {
+      margin-bottom: 24px;
+      padding: 24px;
+      border: 2px solid rgba($gray, 0.1);
+      border-radius: $radius8;
+      display: flex;
+      align-items: center;
+
+      .text-area {
+        .title {
+          font-size: 1.8rem;
+          color: $dark;
+          margin-bottom: 8px;
+          font-weight: $font-bold;
+        }
+
+        .text {
+          font-size: 1.4rem;
+          color: $gray;
+        }
+      }
+      .ratio {
+        color: $color;
+        font-size: 2rem;
+        font-weight: $font-bold;
+      }
+      .icon {
+        width: 62px;
+        height: 62px;
+        margin: 0 20px;
+        background: $color;
+        border-radius: 4px;
+        position: relative;
+
+        img {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+  }
+
+  .courses-progress {
+    &-title {
+      margin-bottom: 32px;
+      font-size: 3.2rem;
+      font-weight: $font-bold;
+      text-align: center;
+    }
+
+    .grammar {
+      @include courses-progress-button($papre);
+    }
+    .dictionary {
+      @include courses-progress-button($orange);
+    }
+
+    .reading {
+      @include courses-progress-button($red);
+    }
+  }
 }
